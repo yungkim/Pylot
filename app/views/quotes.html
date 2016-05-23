@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Quotes</title>
+	<link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+</head>
+<body>
+	<div id="container">
+		<div class="inline_block">
+			<a href="process/logout">Logout</a><br>
+			<div id="box_quotes" class="inline_block">
+			<h1>Welcome, {{ session['name'] }}!</h1>
+			<fieldset>
+				<h2>Quotable Quotes</h2>
+				{% for data in data %}
+				<div id="content_quote" class="border">
+				
+					{% if data['message'] and data['fav_user_id'] != session['id'] %}
+					<p>{{ data['message'] }}</p>
+					<p>Posted by <a href="users/{{ data['user_id'] }}">{{ data['name'] }}</a></p>
+					<form action="process/add_favorite" method="post">
+						<input type="hidden" name="quote_id" value="{{ data['quote_id'] }}">
+						<input type="submit" value="Add to My List">
+					</form>
+					{%endif%}
+					
+				</div>
+				{% endfor %}
+			</fieldset>
+			</div>
+			<div id="box_favorites" class="inline_block">
+
+				<fieldset>
+					<legend><h2>Your Favorites</h2></legend>
+					{% for data in data %}
+					{% if session['id'] == data['fav_user_id'] and data['message'] %} 
+						<p>{{ data['message'] }}</p>
+						<p>Posted by <a href="">{{ data['name'] }}</a></p>
+						<form action="process/remove_favorite" method="post">
+							<input type="hidden" name="favorite_id" value="{{ data['favorite_id'] }}">
+							<input type="submit" value="Remove from My List">
+						</form>
+					{%endif%}
+					{% endfor %}	
+				</fieldset>
+					</div>
+					<div id="box_contribute">
+						<h2>Contribute a Quote:</h2>
+						<form action="process/add_quote" method="post">
+							<p>Quoted By:<input type="text" name="author"></p>
+							<p>Message:<textarea name="message"></textarea></p>
+							<input type="submit">
+						</form>
+					</div>
+				
+			</div>
+
+		</div>
+		
+
+
+		{% with messages = get_flashed_messages() %}
+	              {% if messages %}
+	                {% for message in messages %}
+	                  <p class='flash'>{{message}}</p>
+	                {% endfor %}
+	              {% endif %}
+	            {% endwith %}
+	</div>
+</body>
+</html>

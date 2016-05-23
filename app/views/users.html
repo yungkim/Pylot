@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Quotes</title>
+	<link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+</head>
+<body>
+	<div id="container">
+		<a href="../quotes">Dashboard</a> | 
+		<a href="../process/logout">Logout</a>
+		<p>Posted by {{ data[0]['name'] }}</p>
+		<p>Count: {{ count[0]['count'] }}</p>
+		{% for data in data%}
+			
+			<p><span class="flash">{{ data['author'] }}:</span> {{ data['message']}}</p>
+			
+		{% endfor%}
+	</div>
+</body>
+</html>

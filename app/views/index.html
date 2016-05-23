@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Login/Registration</title>
+	<link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+</head>
+<body>
+	<div id="container">
+		
+		<h1>Welcome!</h1>
+		<fieldset>
+			<legend>Register</legend>
+			<div>
+				<form action="process/register" method="post">
+					<p>Name: <input type="text" name="name"></p>
+					<p>Alias: <input type="text" name="alias"></p>
+					<p>Email: <input type="text" name="email"></p>
+					<p>Password: <input type="password" name="password"></p>
+					<p>* Password should be at least 8 characters</p>
+					<p>Confirm PW: <input type="password" name="confirm_password"></p>
+					<input type="date" name="date_of_birth">
+					<p><input type="submit" name="" value="Register"></p>
+				</form>
+			</div>
+			
+		</fieldset>
+
+		<fieldset>
+			<legend>Login</legend>
+			<div>
+				<form action="process/login" method="post">
+					<p>Email: <input type="text" name="email"></p>
+					<p>Password: <input type="password" name="password"></p>
+
+					<p><input type="submit" name="" value="Register"></p>
+				</form>
+			</div>
+			
+		</fieldset>
+	</div>
+	{% with messages = get_flashed_messages() %}
+              {% if messages %}
+                {% for message in messages %}
+                  <p class='flash'>{{message}}</p>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+</body>
+</html>

@@ -1,0 +1,22 @@
+* {
+  font-family: monaco;
+}
+body {
+	background: #eee;
+}
+#container {
+	/*background: #eee;*/
+}
+fieldset {
+	display: inline-block;
+	vertical-align: top;
+}
+.flash {
+	color: red;
+}
+.border {
+	border: 1px solid black;
+}
+.inline_block {
+	display: inline-block;
+}
